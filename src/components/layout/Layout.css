@@ -39,3 +39,25 @@
   padding: 2rem 1.5rem 2.5rem;
   width: 100%;
 }
+
+.container--wide,
+.container--narrow {
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  width: 100%;
+}
+
+.container--wide {
+  max-width: 1620px;
+}
+
+.container--narrow {
+  max-width: 980px;
+}
+
+@media (max-width: 720px) {
+  .container--wide,
+  .container--narrow {
+    padding: 0 1rem;
+  }
+}

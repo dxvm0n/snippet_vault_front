@@ -2,7 +2,7 @@
   align-items: stretch;
   display: grid;
   gap: 0.75rem;
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 4fr) minmax(170px, 1fr);
   width: 100%;
 }
 
@@ -12,7 +12,7 @@
   border-radius: 8px;
   color: #e2e8f0;
   font-size: clamp(1rem, 2.3vw, 1.15rem);
-  min-height: 76px;
+  min-height: 56px;
   outline: none;
   padding: 0 1.2rem;
   transition: border-color 160ms ease, box-shadow 160ms ease;
@@ -39,8 +39,8 @@
   font-weight: 600;
   gap: 0.6rem;
   justify-content: center;
-  min-height: 76px;
-  min-width: clamp(160px, 20%, 220px);
+  min-height: 56px;
+  min-width: 170px;
   padding: 0 1.35rem;
   transition: background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease, color 160ms ease;
 }
@@ -78,7 +78,7 @@
 
   .search-bar__button,
   .search-bar__input {
-    min-height: 64px;
+    min-height: 52px;
   }
 
   .search-bar__button {

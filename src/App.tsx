@@ -444,35 +444,39 @@ function App() {
           <Route
             element={
               <section className="page-stack">
-                <section className="app-hero-search">
-                  <HeroTitle />
-                  <SearchBar
-                    disabled={loading}
-                    onChange={setSearchDraft}
-                    onSubmit={handleSearchSubmit}
-                    value={searchDraft}
-                  />
-                  <ResultsMetaLine count={filteredSnippets.length} />
-                </section>
-                <section className="app-results-header" aria-label="Resumen de resultados">
-                  <SectionHeaderInline count={filteredSnippets.length} />
-                </section>
-
-                <section className="app-snippet-grid-block" aria-label="Resultados de snippets">
-                  {renderSnippetResults()}
-                </section>
-
-                {!loading && filteredSnippetCards.length ? (
-                  <section className="app-pagination-block" aria-label="Navegación de páginas">
-                    <Pagination
-                      currentPage={currentPage}
-                      disabled={working}
-                      onClear={searchTerm.trim() ? clearSearchAndPagination : undefined}
-                      onPageChange={setCurrentPage}
-                      totalPages={totalPages}
+                <section className="container--narrow">
+                  <section className="app-hero-search">
+                    <HeroTitle />
+                    <SearchBar
+                      disabled={loading}
+                      onChange={setSearchDraft}
+                      onSubmit={handleSearchSubmit}
+                      value={searchDraft}
                     />
+                    <ResultsMetaLine count={filteredSnippets.length} />
                   </section>
-                ) : null}
+                </section>
+                <section className="container--wide">
+                  <section className="app-results-header" aria-label="Resumen de resultados">
+                    <SectionHeaderInline count={filteredSnippets.length} />
+                  </section>
+
+                  <section className="app-snippet-grid-block" aria-label="Resultados de snippets">
+                    {renderSnippetResults()}
+                  </section>
+
+                  {!loading && filteredSnippetCards.length ? (
+                    <section className="app-pagination-block" aria-label="Navegación de páginas">
+                      <Pagination
+                        currentPage={currentPage}
+                        disabled={working}
+                        onClear={searchTerm.trim() ? clearSearchAndPagination : undefined}
+                        onPageChange={setCurrentPage}
+                        totalPages={totalPages}
+                      />
+                    </section>
+                  ) : null}
+                </section>
               </section>
             }
             path="/"
@@ -481,190 +485,197 @@ function App() {
           <Route
             element={
               <section className="page-stack">
-                <h2 className="page-title">Crear y gestionar snippets</h2>
-                {renderFeedback()}
-
-                <article className="panel panel-full">
-                  <h2>Snippets</h2>
-                  <form className="snippet-form" onSubmit={(event) => void handleSnippetSubmit(event)}>
-                    <input
-                      onChange={(event) => setSnippetTitle(event.target.value)}
-                      placeholder="Título"
-                      required
-                      value={snippetTitle}
-                    />
-                    <select
-                      onChange={(event) => {
-                        const value = event.target.value
-                        setSnippetLanguageId(value ? Number(value) : '')
-                      }}
-                      required
-                      value={snippetLanguageId}
-                    >
-                      <option value="">Selecciona lenguaje</option>
-                      {languages.map((language) => (
-                        <option key={language.id} value={language.id}>
-                          {language.name}
-                        </option>
-                      ))}
-                    </select>
-                    <textarea
-                      onChange={(event) => setSnippetContent(event.target.value)}
-                      placeholder="Contenido del snippet"
-                      required
-                      rows={6}
-                      value={snippetContent}
-                    />
-                    <label className="favorite-toggle">
+                <section className="container--narrow">
+                  <header className="page-hero">
+                    <p className="page-eyebrow">Gestion</p>
+                    <h2 className="page-title">Crear y gestionar snippets</h2>
+                    <p className="page-description">Crea, edita y organiza snippets desde un mismo flujo.</p>
+                  </header>
+                </section>
+                <section className="container--wide">
+                  {renderFeedback()}
+                  <article className="panel panel-full">
+                    <h2>Snippets</h2>
+                    <form className="snippet-form" onSubmit={(event) => void handleSnippetSubmit(event)}>
                       <input
-                        checked={snippetFavorite}
-                        onChange={(event) => setSnippetFavorite(event.target.checked)}
-                        type="checkbox"
+                        onChange={(event) => setSnippetTitle(event.target.value)}
+                        placeholder="Título"
+                        required
+                        value={snippetTitle}
                       />
-                      Marcar como favorito
-                    </label>
-                    <div className="tags-picker">
-                      <p>Tags</p>
-                      <div className="tags-picker-options">
-                        {tags.length ? (
-                          tags.map((tag) => (
-                            <label key={tag.id} className="tag-option">
-                              <input
-                                checked={snippetTagIds.includes(tag.id)}
-                                onChange={() => setSnippetTagIds((prev) => toggleTag(prev, tag.id))}
-                                type="checkbox"
-                              />
-                              {tag.name}
-                            </label>
-                          ))
-                        ) : (
-                          <span className="meta">No hay tags disponibles.</span>
-                        )}
+                      <select
+                        onChange={(event) => {
+                          const value = event.target.value
+                          setSnippetLanguageId(value ? Number(value) : '')
+                        }}
+                        required
+                        value={snippetLanguageId}
+                      >
+                        <option value="">Selecciona lenguaje</option>
+                        {languages.map((language) => (
+                          <option key={language.id} value={language.id}>
+                            {language.name}
+                          </option>
+                        ))}
+                      </select>
+                      <textarea
+                        onChange={(event) => setSnippetContent(event.target.value)}
+                        placeholder="Contenido del snippet"
+                        required
+                        rows={6}
+                        value={snippetContent}
+                      />
+                      <label className="favorite-toggle">
+                        <input
+                          checked={snippetFavorite}
+                          onChange={(event) => setSnippetFavorite(event.target.checked)}
+                          type="checkbox"
+                        />
+                        Marcar como favorito
+                      </label>
+                      <div className="tags-picker">
+                        <p>Tags</p>
+                        <div className="tags-picker-options">
+                          {tags.length ? (
+                            tags.map((tag) => (
+                              <label key={tag.id} className="tag-option">
+                                <input
+                                  checked={snippetTagIds.includes(tag.id)}
+                                  onChange={() => setSnippetTagIds((prev) => toggleTag(prev, tag.id))}
+                                  type="checkbox"
+                                />
+                                {tag.name}
+                              </label>
+                            ))
+                          ) : (
+                            <span className="meta">No hay tags disponibles.</span>
+                          )}
+                        </div>
                       </div>
-                    </div>
-                    <button disabled={working || !languages.length} type="submit">
-                      Crear snippet
-                    </button>
-                  </form>
+                      <button disabled={working || !languages.length} type="submit">
+                        Crear snippet
+                      </button>
+                    </form>
 
-                  <ul>
-                    {snippets.map((snippet) => (
-                      <li key={snippet.id} className="snippet-item">
-                        {editingSnippetId === snippet.id ? (
-                          <form className="edit-form" onSubmit={(event) => void handleSnippetPatch(event)}>
-                            <input
-                              onChange={(event) => setEditingSnippetTitle(event.target.value)}
-                              required
-                              value={editingSnippetTitle}
-                            />
-                            <select
-                              onChange={(event) => {
-                                const value = event.target.value
-                                setEditingSnippetLanguageId(value ? Number(value) : '')
-                              }}
-                              required
-                              value={editingSnippetLanguageId}
-                            >
-                              <option value="">Selecciona lenguaje</option>
-                              {languages.map((language) => (
-                                <option key={language.id} value={language.id}>
-                                  {language.name}
-                                </option>
-                              ))}
-                            </select>
-                            <textarea
-                              onChange={(event) => setEditingSnippetContent(event.target.value)}
-                              required
-                              rows={5}
-                              value={editingSnippetContent}
-                            />
-                            <label className="favorite-toggle">
+                    <ul>
+                      {snippets.map((snippet) => (
+                        <li key={snippet.id} className="snippet-item">
+                          {editingSnippetId === snippet.id ? (
+                            <form className="edit-form" onSubmit={(event) => void handleSnippetPatch(event)}>
                               <input
-                                checked={editingSnippetFavorite}
-                                onChange={(event) => setEditingSnippetFavorite(event.target.checked)}
-                                type="checkbox"
+                                onChange={(event) => setEditingSnippetTitle(event.target.value)}
+                                required
+                                value={editingSnippetTitle}
                               />
-                              Favorito
-                            </label>
-                            <div className="tags-picker">
-                              <p>Tags</p>
-                              <div className="tags-picker-options">
-                                {tags.length ? (
-                                  tags.map((tag) => (
-                                    <label key={tag.id} className="tag-option">
-                                      <input
-                                        checked={editingSnippetTagIds.includes(tag.id)}
-                                        onChange={() =>
-                                          setEditingSnippetTagIds((prev) => toggleTag(prev, tag.id))
-                                        }
-                                        type="checkbox"
-                                      />
-                                      {tag.name}
-                                    </label>
-                                  ))
-                                ) : (
-                                  <span className="meta">No hay tags disponibles.</span>
-                                )}
-                              </div>
-                            </div>
-                            <div className="actions">
-                              <button disabled={working} type="submit">
-                                Guardar
-                              </button>
-                              <button disabled={working} onClick={cancelSnippetEdit} type="button">
-                                Cancelar
-                              </button>
-                            </div>
-                          </form>
-                        ) : (
-                          <>
-                            <div>
-                              <h3>
-                                {snippet.title}{' '}
-                                {snippet.is_favorite ? <span className="pill favorite">Favorito</span> : null}
-                              </h3>
-                              <p className="meta">
-                                Lenguaje: {languageMap.get(snippet.language_id) ?? `ID ${snippet.language_id}`}
-                              </p>
-                              {snippet.tag_ids.length ? (
-                                <div className="tag-list">
-                                  {snippet.tag_ids.map((tagId) => (
-                                    <span key={`${snippet.id}-${tagId}`} className="pill tag-pill">
-                                      {tagMap.get(tagId) ?? `Tag ${tagId}`}
-                                    </span>
-                                  ))}
+                              <select
+                                onChange={(event) => {
+                                  const value = event.target.value
+                                  setEditingSnippetLanguageId(value ? Number(value) : '')
+                                }}
+                                required
+                                value={editingSnippetLanguageId}
+                              >
+                                <option value="">Selecciona lenguaje</option>
+                                {languages.map((language) => (
+                                  <option key={language.id} value={language.id}>
+                                    {language.name}
+                                  </option>
+                                ))}
+                              </select>
+                              <textarea
+                                onChange={(event) => setEditingSnippetContent(event.target.value)}
+                                required
+                                rows={5}
+                                value={editingSnippetContent}
+                              />
+                              <label className="favorite-toggle">
+                                <input
+                                  checked={editingSnippetFavorite}
+                                  onChange={(event) => setEditingSnippetFavorite(event.target.checked)}
+                                  type="checkbox"
+                                />
+                                Favorito
+                              </label>
+                              <div className="tags-picker">
+                                <p>Tags</p>
+                                <div className="tags-picker-options">
+                                  {tags.length ? (
+                                    tags.map((tag) => (
+                                      <label key={tag.id} className="tag-option">
+                                        <input
+                                          checked={editingSnippetTagIds.includes(tag.id)}
+                                          onChange={() =>
+                                            setEditingSnippetTagIds((prev) => toggleTag(prev, tag.id))
+                                          }
+                                          type="checkbox"
+                                        />
+                                        {tag.name}
+                                      </label>
+                                    ))
+                                  ) : (
+                                    <span className="meta">No hay tags disponibles.</span>
+                                  )}
                                 </div>
-                              ) : (
-                                <p className="meta">Sin tags</p>
-                              )}
-                              <pre>{snippet.content}</pre>
-                            </div>
-                            <div className="actions">
-                              <button disabled={working} onClick={() => startSnippetEdit(snippet)} type="button">
-                                Editar
-                              </button>
-                              <button
-                                disabled={working}
-                                onClick={() => void toggleSnippetFavorite(snippet)}
-                                type="button"
-                              >
-                                {snippet.is_favorite ? 'Quitar favorito' : 'Marcar favorito'}
-                              </button>
-                              <button
-                                className="danger"
-                                disabled={working}
-                                onClick={() => void deleteSnippet(snippet.id)}
-                                type="button"
-                              >
-                                Eliminar
-                              </button>
-                            </div>
-                          </>
-                        )}
-                      </li>
-                    ))}
-                  </ul>
-                </article>
+                              </div>
+                              <div className="actions">
+                                <button disabled={working} type="submit">
+                                  Guardar
+                                </button>
+                                <button disabled={working} onClick={cancelSnippetEdit} type="button">
+                                  Cancelar
+                                </button>
+                              </div>
+                            </form>
+                          ) : (
+                            <>
+                              <div>
+                                <h3>
+                                  {snippet.title}{' '}
+                                  {snippet.is_favorite ? <span className="pill favorite">Favorito</span> : null}
+                                </h3>
+                                <p className="meta">
+                                  Lenguaje: {languageMap.get(snippet.language_id) ?? `ID ${snippet.language_id}`}
+                                </p>
+                                {snippet.tag_ids.length ? (
+                                  <div className="tag-list">
+                                    {snippet.tag_ids.map((tagId) => (
+                                      <span key={`${snippet.id}-${tagId}`} className="pill tag-pill">
+                                        {tagMap.get(tagId) ?? `Tag ${tagId}`}
+                                      </span>
+                                    ))}
+                                  </div>
+                                ) : (
+                                  <p className="meta">Sin tags</p>
+                                )}
+                                <pre>{snippet.content}</pre>
+                              </div>
+                              <div className="actions">
+                                <button disabled={working} onClick={() => startSnippetEdit(snippet)} type="button">
+                                  Editar
+                                </button>
+                                <button
+                                  disabled={working}
+                                  onClick={() => void toggleSnippetFavorite(snippet)}
+                                  type="button"
+                                >
+                                  {snippet.is_favorite ? 'Quitar favorito' : 'Marcar favorito'}
+                                </button>
+                                <button
+                                  className="danger"
+                                  disabled={working}
+                                  onClick={() => void deleteSnippet(snippet.id)}
+                                  type="button"
+                                >
+                                  Eliminar
+                                </button>
+                              </div>
+                            </>
+                          )}
+                        </li>
+                      ))}
+                    </ul>
+                  </article>
+                </section>
               </section>
             }
             path="/snippets"
@@ -673,75 +684,82 @@ function App() {
           <Route
             element={
               <section className="page-stack">
-                <h2 className="page-title">Lenguajes</h2>
-                {renderFeedback()}
-
-                <article className="panel">
-                  <h2>Lenguajes</h2>
-                  <form onSubmit={(event) => void handleLanguageSubmit(event)}>
-                    <input
-                      onChange={(event) => setLanguageName(event.target.value)}
-                      placeholder="Nombre"
-                      required
-                      value={languageName}
-                    />
-                    <input
-                      onChange={(event) => setLanguageDescription(event.target.value)}
-                      placeholder="Descripción opcional"
-                      value={languageDescription}
-                    />
-                    <button disabled={working} type="submit">
-                      Crear lenguaje
-                    </button>
-                  </form>
-                  <ul>
-                    {languages.map((language) => (
-                      <li key={language.id}>
-                        {editingLanguageId === language.id ? (
-                          <form className="edit-form" onSubmit={(event) => void handleLanguagePatch(event)}>
-                            <input
-                              onChange={(event) => setEditingLanguageName(event.target.value)}
-                              required
-                              value={editingLanguageName}
-                            />
-                            <input
-                              onChange={(event) => setEditingLanguageDescription(event.target.value)}
-                              placeholder="Descripción opcional"
-                              value={editingLanguageDescription}
-                            />
-                            <div className="actions">
-                              <button disabled={working} type="submit">
-                                Guardar
-                              </button>
-                              <button disabled={working} onClick={cancelLanguageEdit} type="button">
-                                Cancelar
-                              </button>
-                            </div>
-                          </form>
-                        ) : (
-                          <>
-                            <div>
-                              <strong>{language.name}</strong>
-                              {language.description ? <p>{language.description}</p> : null}
-                            </div>
-                            <div className="actions">
-                              <button disabled={working} onClick={() => startLanguageEdit(language)} type="button">
-                                Editar
-                              </button>
-                              <button
-                                disabled={working}
-                                onClick={() => void deleteLanguage(language.id)}
-                                type="button"
-                              >
-                                Eliminar
-                              </button>
-                            </div>
-                          </>
-                        )}
-                      </li>
-                    ))}
-                  </ul>
-                </article>
+                <section className="container--narrow">
+                  <header className="page-hero">
+                    <p className="page-eyebrow">Catalogo</p>
+                    <h2 className="page-title">Lenguajes</h2>
+                    <p className="page-description">Administra los lenguajes disponibles para clasificar snippets.</p>
+                  </header>
+                </section>
+                <section className="container--wide">
+                  {renderFeedback()}
+                  <article className="panel panel-full">
+                    <h2>Lenguajes</h2>
+                    <form onSubmit={(event) => void handleLanguageSubmit(event)}>
+                      <input
+                        onChange={(event) => setLanguageName(event.target.value)}
+                        placeholder="Nombre"
+                        required
+                        value={languageName}
+                      />
+                      <input
+                        onChange={(event) => setLanguageDescription(event.target.value)}
+                        placeholder="Descripción opcional"
+                        value={languageDescription}
+                      />
+                      <button disabled={working} type="submit">
+                        Crear lenguaje
+                      </button>
+                    </form>
+                    <ul>
+                      {languages.map((language) => (
+                        <li key={language.id}>
+                          {editingLanguageId === language.id ? (
+                            <form className="edit-form" onSubmit={(event) => void handleLanguagePatch(event)}>
+                              <input
+                                onChange={(event) => setEditingLanguageName(event.target.value)}
+                                required
+                                value={editingLanguageName}
+                              />
+                              <input
+                                onChange={(event) => setEditingLanguageDescription(event.target.value)}
+                                placeholder="Descripción opcional"
+                                value={editingLanguageDescription}
+                              />
+                              <div className="actions">
+                                <button disabled={working} type="submit">
+                                  Guardar
+                                </button>
+                                <button disabled={working} onClick={cancelLanguageEdit} type="button">
+                                  Cancelar
+                                </button>
+                              </div>
+                            </form>
+                          ) : (
+                            <>
+                              <div>
+                                <strong>{language.name}</strong>
+                                {language.description ? <p>{language.description}</p> : null}
+                              </div>
+                              <div className="actions">
+                                <button disabled={working} onClick={() => startLanguageEdit(language)} type="button">
+                                  Editar
+                                </button>
+                                <button
+                                  disabled={working}
+                                  onClick={() => void deleteLanguage(language.id)}
+                                  type="button"
+                                >
+                                  Eliminar
+                                </button>
+                              </div>
+                            </>
+                          )}
+                        </li>
+                      ))}
+                    </ul>
+                  </article>
+                </section>
               </section>
             }
             path="/languages"
@@ -750,58 +768,65 @@ function App() {
           <Route
             element={
               <section className="page-stack">
-                <h2 className="page-title">Tags</h2>
-                {renderFeedback()}
-
-                <article className="panel">
-                  <h2>Tags</h2>
-                  <form onSubmit={(event) => void handleTagSubmit(event)}>
-                    <input
-                      onChange={(event) => setTagName(event.target.value)}
-                      placeholder="Nombre del tag"
-                      required
-                      value={tagName}
-                    />
-                    <button disabled={working} type="submit">
-                      Crear tag
-                    </button>
-                  </form>
-                  <ul>
-                    {tags.map((tag) => (
-                      <li key={tag.id}>
-                        {editingTagId === tag.id ? (
-                          <form className="edit-form" onSubmit={(event) => void handleTagPatch(event)}>
-                            <input
-                              onChange={(event) => setEditingTagName(event.target.value)}
-                              required
-                              value={editingTagName}
-                            />
-                            <div className="actions">
-                              <button disabled={working} type="submit">
-                                Guardar
-                              </button>
-                              <button disabled={working} onClick={cancelTagEdit} type="button">
-                                Cancelar
-                              </button>
-                            </div>
-                          </form>
-                        ) : (
-                          <>
-                            <strong>{tag.name}</strong>
-                            <div className="actions">
-                              <button disabled={working} onClick={() => startTagEdit(tag)} type="button">
-                                Editar
-                              </button>
-                              <button disabled={working} onClick={() => void deleteTag(tag.id)} type="button">
-                                Eliminar
-                              </button>
-                            </div>
-                          </>
-                        )}
-                      </li>
-                    ))}
-                  </ul>
-                </article>
+                <section className="container--narrow">
+                  <header className="page-hero">
+                    <p className="page-eyebrow">Organizacion</p>
+                    <h2 className="page-title">Tags</h2>
+                    <p className="page-description">Define etiquetas para mejorar la busqueda y filtrado.</p>
+                  </header>
+                </section>
+                <section className="container--wide">
+                  {renderFeedback()}
+                  <article className="panel panel-full">
+                    <h2>Tags</h2>
+                    <form onSubmit={(event) => void handleTagSubmit(event)}>
+                      <input
+                        onChange={(event) => setTagName(event.target.value)}
+                        placeholder="Nombre del tag"
+                        required
+                        value={tagName}
+                      />
+                      <button disabled={working} type="submit">
+                        Crear tag
+                      </button>
+                    </form>
+                    <ul>
+                      {tags.map((tag) => (
+                        <li key={tag.id}>
+                          {editingTagId === tag.id ? (
+                            <form className="edit-form" onSubmit={(event) => void handleTagPatch(event)}>
+                              <input
+                                onChange={(event) => setEditingTagName(event.target.value)}
+                                required
+                                value={editingTagName}
+                              />
+                              <div className="actions">
+                                <button disabled={working} type="submit">
+                                  Guardar
+                                </button>
+                                <button disabled={working} onClick={cancelTagEdit} type="button">
+                                  Cancelar
+                                </button>
+                              </div>
+                            </form>
+                          ) : (
+                            <>
+                              <strong>{tag.name}</strong>
+                              <div className="actions">
+                                <button disabled={working} onClick={() => startTagEdit(tag)} type="button">
+                                  Editar
+                                </button>
+                                <button disabled={working} onClick={() => void deleteTag(tag.id)} type="button">
+                                  Eliminar
+                                </button>
+                              </div>
+                            </>
+                          )}
+                        </li>
+                      ))}
+                    </ul>
+                  </article>
+                </section>
               </section>
             }
             path="/tags"
@@ -810,27 +835,34 @@ function App() {
           <Route
             element={
               <section className="page-stack">
-                <h2 className="page-title">Favoritos</h2>
-                {renderFeedback()}
-
-                <article className="panel panel-full">
-                  <h2>Snippets favoritos</h2>
-                  {!favoriteSnippetCards.length && !loading ? (
-                    <p className="meta">No tienes snippets favoritos todavía.</p>
-                  ) : (
-                    <SnippetGrid
-                      disabled={working}
-                      onDelete={(snippet) => void deleteSnippet(Number(snippet.id))}
-                      onToggleFavorite={(snippet) =>
-                        void toggleSnippetFavorite({
-                          id: Number(snippet.id),
-                          is_favorite: snippet.isFavorite,
-                        })
-                      }
-                      snippets={favoriteSnippetCards}
-                    />
-                  )}
-                </article>
+                <section className="container--narrow">
+                  <header className="page-hero">
+                    <p className="page-eyebrow">Coleccion</p>
+                    <h2 className="page-title">Favoritos</h2>
+                    <p className="page-description">Consulta y gestiona rapidamente tus snippets destacados.</p>
+                  </header>
+                </section>
+                <section className="container--wide">
+                  {renderFeedback()}
+                  <article className="panel panel-full">
+                    <h2>Snippets favoritos</h2>
+                    {!favoriteSnippetCards.length && !loading ? (
+                      <p className="meta">No tienes snippets favoritos todavía.</p>
+                    ) : (
+                      <SnippetGrid
+                        disabled={working}
+                        onDelete={(snippet) => void deleteSnippet(Number(snippet.id))}
+                        onToggleFavorite={(snippet) =>
+                          void toggleSnippetFavorite({
+                            id: Number(snippet.id),
+                            is_favorite: snippet.isFavorite,
+                          })
+                        }
+                        snippets={favoriteSnippetCards}
+                      />
+                    )}
+                  </article>
+                </section>
               </section>
             }
             path="/favorites"

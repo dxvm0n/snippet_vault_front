@@ -1,107 +1,161 @@
 .app {
   margin: 0 auto;
-  max-width: 1320px;
+  max-width: 100%;
   padding: 0;
   width: 100%;
 }
 
 .page-stack {
   display: grid;
-  gap: 1rem;
+  gap: 0;
+}
+
+.page-hero {
+  display: grid;
+  gap: 0.35rem;
+  margin: 0.55rem 0 0.95rem;
+  text-align: center;
+}
+
+.page-eyebrow {
+  color: #5eead4;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  margin: 0;
+  text-transform: uppercase;
 }
 
 .page-title {
   color: #d8e6ff;
-  font-size: 1.4rem;
-  margin: 0.25rem 0 0.15rem;
+  font-size: clamp(1.5rem, 2.35vw, 2rem);
+  margin: 0;
+}
+
+.page-description {
+  color: #94a3b8;
+  font-size: 0.98rem;
+  margin: 0;
 }
 
 .app-hero-search {
   display: grid;
-  gap: 1.5rem;
-  margin: 1.25rem auto 1.4rem;
-  max-width: 1180px;
+  gap: 1rem;
+  margin: 0.55rem 0 0.85rem;
+  max-width: 100%;
 }
 
 .app-results-header {
-  margin: 0.1rem 0 1.2rem;
+  margin: 0 0 0.8rem;
 }
 
 .app-snippet-grid-block {
   display: grid;
-  gap: 1rem;
-  margin: 0 0 2rem;
+  gap: 0.9rem;
+  margin: 0 0 1.35rem;
+  width: 100%;
 }
 
 .app-pagination-block {
-  margin: -0.65rem 0 2.1rem;
+  margin: -0.35rem 0 1.65rem;
 }
 
 .error {
-  background: #ffe9e9;
-  border: 1px solid #ffb3b3;
-  border-radius: 10px;
-  color: #8f1f1f;
-  margin-bottom: 1rem;
-  padding: 0.75rem;
+  background: rgba(32, 8, 14, 0.58);
+  border: 1px solid rgba(248, 113, 113, 0.56);
+  border-radius: 12px;
+  color: #fecaca;
+  margin: 0 0 1rem;
+  padding: 0.78rem 0.95rem;
 }
 
 .status {
-  color: #3f4f6a;
-  margin-bottom: 1rem;
-}
-
-.grid {
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  margin-bottom: 1rem;
+  background: rgba(4, 18, 38, 0.56);
+  border: 1px solid rgba(45, 212, 191, 0.35);
+  border-radius: 12px;
+  color: #b6c4dc;
+  margin: 0 0 1rem;
+  padding: 0.78rem 0.95rem;
 }
 
 .panel {
-  background: #ffffff;
-  border: 1px solid #dce3f0;
+  background: linear-gradient(180deg, rgba(4, 18, 38, 0.72), rgba(4, 15, 30, 0.62));
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(45, 212, 191, 0.38);
   border-radius: 14px;
-  box-shadow: 0 4px 14px rgba(23, 37, 64, 0.08);
+  box-shadow:
+    0 0 0 1px rgba(45, 212, 191, 0.12),
+    0 14px 26px rgba(0, 0, 0, 0.26),
+    inset 0 1px 0 rgba(226, 232, 240, 0.08);
   padding: 1rem;
 }
 
 .panel-full {
-  margin-bottom: 2rem;
+  margin: 0 0 2rem;
 }
 
 .panel h2 {
-  margin-top: 0;
+  color: #dbeafe;
+  font-size: 1.2rem;
+  margin: 0 0 0.9rem;
+}
+
+.panel strong {
+  color: #dbeafe;
 }
 
 .panel form {
   display: grid;
   gap: 0.6rem;
-  margin-bottom: 1rem;
+  margin: 0 0 1rem;
 }
 
 .panel input,
 .panel textarea,
 .panel select,
 .panel button {
-  border: 1px solid #c8d3e8;
   border-radius: 10px;
   font-size: 0.95rem;
-  padding: 0.6rem 0.7rem;
+  min-height: 40px;
+  padding: 0.56rem 0.72rem;
 }
 
 .panel input,
 .panel textarea,
 .panel select {
-  background: #f8faff;
+  background: rgba(3, 15, 34, 0.62);
+  border: 1px solid rgba(45, 212, 191, 0.3);
+  color: #e2e8f0;
+}
+
+.panel input::placeholder,
+.panel textarea::placeholder {
+  color: #7f8ea7;
+}
+
+.panel input:focus-visible,
+.panel textarea:focus-visible,
+.panel select:focus-visible {
+  border-color: rgba(94, 234, 212, 0.96);
+  box-shadow: 0 0 0 2px rgba(45, 212, 191, 0.2);
+  outline: none;
 }
 
 .panel button {
-  background: #1f4aff;
-  border: 1px solid #1f4aff;
-  color: #fff;
+  background: rgba(6, 31, 44, 0.54);
+  border: 1px solid rgba(52, 211, 153, 0.62);
+  color: #6ee7b7;
   cursor: pointer;
   font-weight: 600;
+  transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease, box-shadow 160ms ease;
+}
+
+.panel button:hover:not(:disabled),
+.panel button:focus-visible:not(:disabled) {
+  background: rgba(16, 85, 83, 0.45);
+  border-color: rgba(110, 231, 183, 0.9);
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.2);
+  color: #bbf7d0;
 }
 
 .panel button:disabled {
@@ -119,7 +173,8 @@
 
 .panel li {
   align-items: flex-start;
-  border: 1px solid #e4eaf5;
+  background: rgba(1, 10, 26, 0.58);
+  border: 1px solid rgba(71, 85, 105, 0.5);
   border-radius: 10px;
   display: flex;
   gap: 0.75rem;
@@ -128,6 +183,7 @@
 }
 
 .panel li p {
+  color: #94a3b8;
   margin: 0.25rem 0 0;
 }
 
@@ -142,6 +198,7 @@
 
 .favorite-toggle {
   align-items: center;
+  color: #cbd5e1;
   display: flex;
   font-size: 0.9rem;
   gap: 0.5rem;
@@ -158,6 +215,7 @@
 }
 
 .tags-picker p {
+  color: #cbd5e1;
   font-size: 0.9rem;
   font-weight: 600;
   margin: 0;
@@ -171,9 +229,10 @@
 
 .tag-option {
   align-items: center;
-  background: #eef3ff;
-  border: 1px solid #d2def7;
+  background: rgba(20, 184, 166, 0.13);
+  border: 1px solid rgba(45, 212, 191, 0.42);
   border-radius: 999px;
+  color: #99f6e4;
   display: inline-flex;
   font-size: 0.85rem;
   gap: 0.35rem;
@@ -190,13 +249,15 @@
 }
 
 .snippet-item h3 {
+  color: #dbeafe;
   margin: 0;
 }
 
 .snippet-item pre {
-  background: #10172d;
+  background: rgba(1, 10, 26, 0.72);
+  border: 1px solid rgba(56, 189, 248, 0.25);
   border-radius: 10px;
-  color: #f2f5ff;
+  color: #bae6fd;
   margin: 0.75rem 0 0;
   overflow-x: auto;
   padding: 0.75rem;
@@ -204,19 +265,31 @@
 }
 
 .meta {
-  color: #4a5f87;
+  color: #94a3b8;
   margin-top: 0.35rem;
 }
 
 .actions {
   display: flex;
-  gap: 0.6rem;
   flex-wrap: wrap;
+  gap: 0.6rem;
 }
 
-.danger {
-  background: #ef4444;
-  border-color: #ef4444;
+.actions .danger,
+.panel button.danger {
+  background: rgba(127, 29, 29, 0.34);
+  border-color: rgba(248, 113, 113, 0.78);
+  color: #fecaca;
+}
+
+.actions .danger:hover:not(:disabled),
+.actions .danger:focus-visible:not(:disabled),
+.panel button.danger:hover:not(:disabled),
+.panel button.danger:focus-visible:not(:disabled) {
+  background: rgba(153, 27, 27, 0.45);
+  border-color: rgba(252, 165, 165, 0.95);
+  box-shadow: 0 0 12px rgba(248, 113, 113, 0.22);
+  color: #fee2e2;
 }
 
 .pill {
@@ -230,8 +303,9 @@
 }
 
 .favorite {
-  background: #fff8cc;
-  color: #9d7700;
+  background: rgba(250, 204, 21, 0.15);
+  border: 1px solid rgba(250, 204, 21, 0.45);
+  color: #fcd34d;
 }
 
 .tag-list {
@@ -242,13 +316,14 @@
 }
 
 .tag-pill {
-  background: #e5edff;
-  color: #20439b;
+  background: rgba(59, 130, 246, 0.16);
+  border: 1px solid rgba(96, 165, 250, 0.5);
+  color: #93c5fd;
 }
 
-@media (max-width: 640px) {
-  .app-header {
-    flex-direction: column;
+@media (max-width: 720px) {
+  .page-hero {
+    margin-bottom: 0.8rem;
   }
 
   .actions {
