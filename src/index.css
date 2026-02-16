@@ -1,5 +1,7 @@
+@import 'tailwindcss';
+
 :root {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Space Grotesk', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.4;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -12,9 +14,14 @@
 }
 
 body {
-  background: linear-gradient(180deg, #eef3ff 0%, #f8faff 70%);
-  color: #10203f;
+  background: #020617;
+  color: #e2e8f0;
   margin: 0;
   min-height: 100vh;
   min-width: 320px;
+}
+
+:where(a, button):focus-visible {
+  outline: 2px solid #5eead4;
+  outline-offset: 2px;
 }

@@ -1,0 +1,191 @@
+.snippet-card {
+  --snippet-accent-rgb: 45, 212, 191;
+  --snippet-accent-soft-rgb: 94, 234, 212;
+  align-content: start;
+  background: rgba(4, 18, 38, 0.56);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(var(--snippet-accent-rgb), 0.44);
+  border-radius: 14px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
+  display: grid;
+  gap: 0.9rem;
+  min-height: 100%;
+  padding: 1rem;
+  transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+.snippet-card:hover {
+  border-color: rgba(var(--snippet-accent-soft-rgb), 0.82);
+  box-shadow:
+    0 14px 30px rgba(0, 0, 0, 0.28),
+    0 0 0 1px rgba(var(--snippet-accent-rgb), 0.28),
+    0 0 20px rgba(var(--snippet-accent-rgb), 0.22);
+  transform: translateY(-3px);
+}
+
+.snippet-card--javascript {
+  --snippet-accent-rgb: 52, 211, 153;
+  --snippet-accent-soft-rgb: 110, 231, 183;
+}
+
+.snippet-card--python {
+  --snippet-accent-rgb: 56, 189, 248;
+  --snippet-accent-soft-rgb: 125, 211, 252;
+}
+
+.snippet-card--docker {
+  --snippet-accent-rgb: 167, 139, 250;
+  --snippet-accent-soft-rgb: 196, 181, 253;
+}
+
+.snippet-card--bash {
+  --snippet-accent-rgb: 20, 184, 166;
+  --snippet-accent-soft-rgb: 94, 234, 212;
+}
+
+.snippet-card--sql {
+  --snippet-accent-rgb: 96, 165, 250;
+  --snippet-accent-soft-rgb: 147, 197, 253;
+}
+
+.snippet-card__top {
+  align-items: center;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: space-between;
+}
+
+.snippet-card__language {
+  background: rgba(var(--snippet-accent-rgb), 0.15);
+  border: 1px solid rgba(var(--snippet-accent-rgb), 0.45);
+  border-radius: 999px;
+  color: rgba(var(--snippet-accent-soft-rgb), 0.96);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 0.2rem 0.55rem;
+  text-transform: uppercase;
+}
+
+.snippet-card__meta {
+  align-items: center;
+  color: #9fb0cc;
+  display: inline-flex;
+  font-size: 0.82rem;
+  gap: 0.5rem;
+}
+
+.snippet-card__title {
+  color: #dbeafe;
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.snippet-card__preview {
+  background: rgba(1, 10, 26, 0.62);
+  border: 1px solid rgba(var(--snippet-accent-rgb), 0.24);
+  border-radius: 10px;
+  color: #c9dbff;
+  font-family: 'IBM Plex Mono', 'Fira Code', Consolas, monospace;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  margin: 0;
+  min-height: 142px;
+  overflow: auto;
+  padding: 0.7rem;
+  text-shadow: 0 0 12px rgba(var(--snippet-accent-rgb), 0.1);
+  white-space: pre-wrap;
+}
+
+.snippet-card__footer {
+  align-items: flex-end;
+  display: flex;
+  gap: 0.75rem;
+  justify-content: space-between;
+}
+
+.snippet-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.snippet-card__tag {
+  background: rgba(15, 23, 42, 0.76);
+  border: 1px solid rgba(71, 85, 105, 0.55);
+  border-radius: 999px;
+  color: #cbd5e1;
+  font-size: 0.74rem;
+  padding: 0.15rem 0.5rem;
+}
+
+.snippet-card__tag--empty {
+  color: #94a3b8;
+}
+
+.snippet-card__actions {
+  align-items: center;
+  display: inline-flex;
+  flex-shrink: 0;
+  gap: 0.45rem;
+}
+
+.snippet-card__date {
+  color: #9fb0cc;
+  font-size: 0.74rem;
+}
+
+.snippet-card__icon {
+  align-items: center;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  color: #9fb0cc;
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 1rem;
+  justify-content: center;
+  line-height: 1;
+  min-height: 30px;
+  min-width: 30px;
+  padding: 0;
+  transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease, box-shadow 160ms ease;
+}
+
+.snippet-card__icon:hover:not(:disabled),
+.snippet-card__icon:focus-visible:not(:disabled) {
+  background: rgba(51, 65, 85, 0.42);
+  border-color: rgba(100, 116, 139, 0.62);
+  color: #dbeafe;
+}
+
+.snippet-card__icon--favorite {
+  color: #facc15;
+}
+
+.snippet-card__icon--favorite:hover:not(:disabled),
+.snippet-card__icon--favorite:focus-visible:not(:disabled) {
+  border-color: rgba(250, 204, 21, 0.8);
+  box-shadow: 0 0 10px rgba(250, 204, 21, 0.3);
+  color: #fde047;
+}
+
+.snippet-card__icon--delete:hover:not(:disabled),
+.snippet-card__icon--delete:focus-visible:not(:disabled) {
+  background: rgba(127, 29, 29, 0.24);
+  border-color: rgba(248, 113, 113, 0.8);
+  box-shadow: 0 0 12px rgba(239, 68, 68, 0.32);
+  color: #fda4af;
+}
+
+.snippet-card__icon:focus-visible {
+  outline-color: #5eead4;
+  outline-offset: 2px;
+  outline-style: solid;
+  outline-width: 2px;
+}
+
+.snippet-card__icon:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}

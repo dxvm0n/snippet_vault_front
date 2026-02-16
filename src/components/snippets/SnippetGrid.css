@@ -1,0 +1,18 @@
+.snippet-grid {
+  align-items: start;
+  display: grid;
+  gap: clamp(1.5rem, 2.2vw, 2rem);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media (max-width: 1100px) {
+  .snippet-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .snippet-grid {
+    grid-template-columns: 1fr;
+  }
+}
